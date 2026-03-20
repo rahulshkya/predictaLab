@@ -4,6 +4,7 @@ from preprocessing.train_test_split import train_test_split
 from metrics.accuracy import accuracy
 from algorithms.logistic_regression import LogisticRegression
 from algorithms.knn import KNN
+from algorithms.decision_tree import DecisionTree
 from core.model_selector import best_model_selector
 from sklearn.preprocessing import StandardScaler
 
@@ -20,6 +21,7 @@ def train_model():
 
     # Split features and target
     X = df.drop(columns=["loan_approved"])
+    X = df.drop(columns=["loan_approved", "points"])
     y = df["loan_approved"]
 
     # Train test split
@@ -40,7 +42,8 @@ def train_model():
     # Models
     models = {
         "LogisticRegression": LogisticRegression(lr=0.01, epochs=1000),
-        "knn": KNN(k=5)
+        "knn": KNN(k=5),
+        "DecisionTree":DecisionTree(max_depth=3)
     }
 
     # Model selection
@@ -48,7 +51,7 @@ def train_model():
     models, X_train, y_train, X_test, y_test, accuracy
 )
 
-    # Final training
+    # Final trainings
     best_model.fit(X_train, y_train)
 
     # Prediction
@@ -58,3 +61,4 @@ def train_model():
     score = accuracy(y_test, pred)
 
     print(f"Final Best Model {best_model_name} and his Accuracy is :", score)
+    

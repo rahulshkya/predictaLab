@@ -30,6 +30,8 @@ class DecisionTree:
 
         for feature in range(n_features):
             thresholds = np.unique(X[:, feature])
+            values = np.unique(X[:, feature])
+            thresholds = (values[:-1] + values[1:]) / 2
 
             for threshold in thresholds:
                 left_idx = X[:, feature] <= threshold
