@@ -58,10 +58,17 @@ def predict(model_name:str,input_data:InputData):
         input_data.years_employed,
         loan_income_ratio
     ]
-    import numpy as np
-    input_features=np.array([input_df])
-    #scaling the input features
-    input_scaled=scaler.transform(input_features)
+    import pandas as pd
+
+    input_features = pd.DataFrame([{
+     "income": input_data.income,
+     "credit_score": input_data.credit_score,
+     "loan_amount": input_data.loan_amount,
+     "years_employed": input_data.years_employed,
+     "loan_income_ratio": loan_income_ratio
+    }])
+
+    input_scaled = scaler.transform(input_features)
     prediction=model.predict(input_scaled)
     if prediction[0] == 1:
         return {
