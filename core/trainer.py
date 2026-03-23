@@ -7,7 +7,7 @@ from algorithms.knn import KNN
 from algorithms.decision_tree import DecisionTree
 from core.model_selector import best_model_selector
 from sklearn.preprocessing import StandardScaler
-
+from algorithms.random_forest import RandomForest
 
 def train_model():
 
@@ -20,7 +20,6 @@ def train_model():
     df["loan_income_ratio"] = df["loan_amount"] / df["income"]
 
     # Split features and target
-    X = df.drop(columns=["loan_approved"])
     X = df.drop(columns=["loan_approved", "points"])
     y = df["loan_approved"]
 
@@ -43,7 +42,8 @@ def train_model():
     models = {
         "LogisticRegression": LogisticRegression(lr=0.01, epochs=1000),
         "knn": KNN(k=5),
-        "DecisionTree":DecisionTree(max_depth=3)
+        "DecisionTree":DecisionTree(max_depth=3),
+        "RandomForest": RandomForest(n_trees=5, max_depth=5)
     }
 
     # Model selection
@@ -52,7 +52,8 @@ def train_model():
 )
 
     # Final trainings
-    best_model.fit(X_train, y_train)
+    for name , model in models.items():
+        model.fit(X_train,y_train)
 
     # Prediction
     pred = best_model.predict(X_test)
@@ -61,4 +62,12 @@ def train_model():
     score = accuracy(y_test, pred)
 
     print(f"Final Best Model {best_model_name} and his Accuracy is :", score)
+
+    import joblib
+
+    joblib.dump(models,"model.pkl")
+    joblib.dump(scaler,"scaler.pkl")
+
+    
+    print("models are saved succesfullly")
     

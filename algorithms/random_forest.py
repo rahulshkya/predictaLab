@@ -20,7 +20,13 @@ class RandomForest:
         for _ in range(self.n_trees):
             X_sample, y_sample = self.bootstrap_sample(X, y)
 
-            tree = DecisionTree(max_depth=self.max_depth)
+            n_features = X.shape[1]
+            max_features = int(np.sqrt(n_features))
+
+            tree = DecisionTree(
+                  max_depth=self.max_depth,
+                  max_features=max_features
+                )
             tree.fit(X_sample, y_sample)
 
             self.trees.append(tree)
