@@ -1,66 +1,86 @@
-# 🚀 PredictaLab — AutoML Loan Prediction System (From Scratch)
+# 🚀 PredictaLab — End-to-End AutoML Loan Prediction System
 
-PredictaLab is a **machine learning AutoML-style system built from scratch in Python** designed to automatically train multiple machine learning algorithms, evaluate their performance, and select the best performing model.
+PredictaLab is a **full-stack machine learning application** that combines **custom-built ML algorithms**, an **AutoML-style model selection engine**, and a **production-ready API with a modern React UI**.
 
-The project focuses on understanding **how machine learning algorithms and ML pipelines work internally** by implementing core components without relying on high-level ML frameworks.
-
-Currently, PredictaLab is applied to a **Loan Approval Prediction problem**, where the system predicts whether a loan should be approved based on applicant data.
+Unlike typical ML projects that stop at notebooks, PredictaLab delivers a **complete product pipeline** — from data processing and model training to real-time prediction via API and user interface.
 
 ---
 
-# 📌 Project Objective
+# 🌐 Live System Overview
 
-The main objective of PredictaLab is to:
+```text
+User Input (React UI)
+        ↓
+FastAPI Backend (Prediction API)
+        ↓
+Scaler + Feature Engineering
+        ↓
+Multiple ML Models (From Scratch)
+        ↓
+Best Model Prediction
+        ↓
+Result Returned to UI
+```
 
-• Build machine learning algorithms **from scratch**
-• Design a **complete ML pipeline**
-• Automatically **compare multiple models**
-• Select the **best performing model automatically**
-• Understand **how AutoML systems work internally**
+---
+
+# 🎯 Key Highlights
+
+• Built **multiple ML algorithms from scratch (no sklearn models used)**
+• Designed a **custom AutoML-style model selection system**
+• Implemented a **complete ML pipeline architecture**
+• Integrated **FastAPI backend for real-time predictions**
+• Developed a **React-based frontend UI**
+• Enabled **dynamic model selection (KNN, Logistic, Decision Tree, etc.)**
+• Achieved **end-to-end ML system deployment locally**
+
+---
+
+# 🧠 Core Concept — AutoML System
+
+PredictaLab behaves like a **mini AutoML engine**:
+
+```text
+Train Multiple Models
+        ↓
+Evaluate Performance
+        ↓
+Compare Metrics
+        ↓
+Select Best Model Automatically
+        ↓
+Use Best Model for Predictions
+```
+
+This replicates how real-world ML platforms optimize model performance.
 
 ---
 
 # ⚙️ Machine Learning Pipeline
 
-PredictaLab follows a structured ML workflow:
-
 ```text
-Dataset
+Raw Dataset
    ↓
-Feature Engineering
+Data Cleaning & Feature Engineering
    ↓
-Train-Test Split
+Train-Test Split (Custom Implementation)
    ↓
-Feature Scaling
+Feature Scaling (StandardScaler)
    ↓
-Model Training
+Model Training (Multiple Algorithms)
    ↓
-Model Evaluation
+Model Evaluation (Accuracy)
    ↓
-Automatic Best Model Selection
+Best Model Selection
+   ↓
+Model Persistence (joblib)
 ```
 
-This pipeline allows the system to behave like a **basic AutoML engine**.
-
 ---
 
-# ✨ Current Features
+# 🧩 Algorithms Implemented
 
-• Logistic Regression implemented **from scratch**
-• K-Nearest Neighbors (KNN) implemented **from scratch**
-• Custom **train_test_split** implementation
-• Custom **accuracy metric**
-• Automatic **model comparison system**
-• Feature scaling using StandardScaler
-• Modular ML pipeline architecture
-
----
-
-# 🧠 Algorithms Implemented (Current)
-
-### Logistic Regression
-
-Implemented using:
+### 🔹 Logistic Regression (From Scratch)
 
 • Sigmoid activation
 • Gradient Descent optimization
@@ -68,155 +88,213 @@ Implemented using:
 
 ---
 
-### K-Nearest Neighbors (KNN)
-
-Implemented using:
+### 🔹 K-Nearest Neighbors (KNN) (From Scratch)
 
 • Euclidean distance
 • Majority voting
-• Configurable K value
+• Configurable K
+
+---
+
+### 🔹 Decision Tree *(Custom Implementation)*
+
+• Recursive splitting
+• Depth control
+• Feature-based decisions
+
+---
+
+### 🔹 Random Forest *(Custom Implementation)*
+
+• Ensemble of decision trees
+• Feature randomness
+• Improved generalization
+
+---
+
+# 🏦 Use Case — Loan Approval Prediction
+
+PredictaLab predicts whether a loan application should be approved based on financial attributes such as:
+
+• Income
+• Credit Score
+• Loan Amount
+• Years Employed
+• Loan-Income Ratio
 
 ---
 
 # 📊 Example Output
 
-```text
-LogisticRegression accuracy: 93.00%
-knn accuracy: 97.75%
-
-Final Best Model: knn
-Final Best Model Accuracy: 97.75%
+```json
+{
+  "model_name": "knn",
+  "prediction": "Loan Approved",
+  "status": "success"
+}
 ```
 
-The system automatically determines the best performing model.
-
 ---
 
-# 🏦 Use Case — Loan Prediction
-
-PredictaLab is currently applied to a **Loan Approval Prediction dataset**.
-
-The model predicts whether a loan application should be approved based on applicant features such as:
-
-• income
-• loan amount
-• loan-income ratio
-• applicant profile data
-
-This helps simulate how machine learning can assist **financial decision systems**.
-
----
-
-# 📂 Project Structure
+# 🧱 Project Architecture
 
 ```text
 PredictaLab
 │
-├── algorithms
+├── algorithms/            # Custom ML algorithms
 │   ├── logistic_regression.py
-│   └── knn.py
+│   ├── knn.py
+│   ├── decision_tree.py
+│   └── random_forest.py
 │
-├── core
+├── core/                  # Training & model selection
 │   ├── trainer.py
 │   └── model_selector.py
 │
-├── preprocessing
-│   └── train_test_split.py
+├── preprocessing/         # Data processing
+│   ├── train_test_split.py
+│   ├── scaler.py
+│   └── encoder.py
 │
-├── metrics
+├── metrics/               # Evaluation metrics
 │   └── accuracy.py
 │
-├── data
+├── backend/               # FastAPI backend
+│   └── index.py
+│
+├── ui/                    # React frontend (Vite)
+│   └── src/App.jsx
+│
+├── data/                  # Dataset
 │   └── loan_approval.csv
 │
+├── models.pkl             # Saved trained models
+├── scaler.pkl             # Saved scaler
 ├── requirements.txt
-├── README.md
-└── main.py
+└── README.md
 ```
 
 ---
 
-# 🛠️ Technologies Used
+# 🛠️ Tech Stack
 
-Python
-NumPy
-Pandas
-Scikit-learn (for feature scaling)
+### 🔹 Machine Learning
+
+• Python
+• NumPy
+• Pandas
+• Custom ML Implementations
+
+### 🔹 Backend
+
+• FastAPI
+• Uvicorn
+
+### 🔹 Frontend
+
+• React (Vite)
+• Axios
+
+### 🔹 Model Persistence
+
+• Joblib
 
 ---
 
 # 📥 Installation
 
-Clone the repository
-
 ```bash
 git clone https://github.com/your-username/PredictaLab.git
-```
-
-Navigate to project directory
-
-```bash
 cd PredictaLab
 ```
 
-Install required libraries
+---
+
+# ⚙️ Backend Setup
 
 ```bash
-pip install -r requirements.txt
+cd backend
+pip install -r ../requirements.txt
+uvicorn index:app --reload
+```
+
+API will run at:
+
+```text
+http://127.0.0.1:8000/docs
 ```
 
 ---
 
-# ▶️ Run the Project
+# 💻 Frontend Setup
 
 ```bash
-python main.py
+cd ui
+npm install
+npm run dev
+```
+
+Frontend will run at:
+
+```text
+http://localhost:5173
 ```
 
 ---
 
-# 🚀 Future Improvements
+# 🔌 API Endpoint
 
-PredictaLab will be expanded into a more powerful AutoML system with additional algorithms and capabilities.
+### Predict Loan Approval
 
-Planned upgrades include:
+```http
+POST /predict/{model_name}
+```
 
-• Decision Tree (from scratch)
-• Random Forest Classifier
-• Naive Bayes Classifier
-• Ensemble Learning techniques
-• Hyperparameter tuning
-• Automatic K selection for KNN
-• Cross Validation
-• Model persistence (saving trained models)
+### Example Request
 
-The goal is to gradually evolve PredictaLab into a **mini machine learning framework**.
+```json
+{
+  "income": 50000,
+  "credit_score": 700,
+  "loan_amount": 10000,
+  "years_employed": 5
+}
+```
 
 ---
 
-# 📚 Learning Goals
+# 🚀 Future Enhancements
 
-This project helps in understanding:
+• Cross-validation system
+• Hyperparameter tuning engine
+• Model explainability (SHAP/LIME)
+• Cloud deployment (AWS / Render / Vercel)
+• Authentication system
+• Dashboard with analytics
 
-• Machine learning algorithms internally
-• Data preprocessing techniques
-• ML pipeline architecture
-• Model evaluation and comparison
-• Debugging and building ML systems from scratch
+---
+
+# 📚 Learning Outcomes
+
+This project demonstrates:
+
+• Deep understanding of ML algorithms
+• Ability to build systems **without high-level abstractions**
+• Backend API development for ML
+• Frontend integration with ML models
+• Real-world ML product architecture
 
 ---
 
 # 👨‍💻 Author
 
-Rahul
-
-BCA Student
-Aspiring **AI Engineer**
+**Rahul Shakya**
+BCA Student | Aspiring AI/ML Engineer/Full stack developer
 
 ---
 
-# ⭐ Project Motivation
+# ⭐ Final Note
 
-PredictaLab was created to deeply understand **machine learning algorithms and AutoML systems** by implementing core ML components from scratch instead of relying completely on existing libraries.
+PredictaLab is not just a project — it is a **complete ML system built from the ground up**, demonstrating both **algorithmic understanding and engineering execution**.
 
-If you found this project interesting, consider giving it a ⭐.
+If you find this project valuable, consider giving it a ⭐ on GitHub.
