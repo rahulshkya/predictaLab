@@ -2,6 +2,8 @@
 
 PredictaLab is a **full-stack machine learning application** that combines **custom-built ML algorithms**, an **AutoML-style model selection engine**, and a **production-ready API with a modern React UI**.
 
+<img width="1919" height="967" alt="Image" src="https://github.com/user-attachments/assets/842ae334-083d-4ac7-b56a-ebd48b2d859b" />
+
 Unlike typical ML projects that stop at notebooks, PredictaLab delivers a **complete product pipeline** — from data processing and model training to real-time prediction via API and user interface.
 
 ---
@@ -113,6 +115,9 @@ Model Persistence (joblib)
 ---
 
 # 🏦 Use Case — Loan Approval Prediction
+
+<img width="1919" height="972" alt="Image" src="https://github.com/user-attachments/assets/f9db8956-6492-4d79-9873-517a74d22303" />
+
 
 PredictaLab predicts whether a loan application should be approved based on financial attributes such as:
 
@@ -249,6 +254,7 @@ http://localhost:5173
 ```http
 POST /predict/{model_name}
 ```
+<img width="1919" height="966" alt="Image" src="https://github.com/user-attachments/assets/77c802a7-2c3f-430b-9fbd-dea2b3706d90" />
 
 ### Example Request
 
