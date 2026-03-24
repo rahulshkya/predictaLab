@@ -73,13 +73,13 @@ def predict(model_name:str,input_data:InputData):
     if prediction[0] == 1:
         return {
             "model_name":model_name,
-            "prediction":"Loan Approved",
+            "prediction":1,
             "status": "success"
             
         }
     else:
         return{
             "model_name":model_name,
-            "prediction":"Loan Rejected",
+            "prediction":0,
             "status": "failed"
         }
